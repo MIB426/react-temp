@@ -5,7 +5,22 @@ class App extends React.Component {
    constructor(){
       super();
       this.state={
-         "name":"RayRayddddd"
+         data: 
+         [
+            {
+               "name":"dogA",
+               "age":"1"
+            },
+            {
+               "name":"catB",
+               "age":"2"
+            },
+            {
+               "name":"pigC",
+               "age":"3"
+            }
+         ],
+         id:"Animal List"
       }
 
    }
@@ -13,10 +28,14 @@ class App extends React.Component {
    render() {
       return (
          <div>
-        <Header/>
-        <Content/>
-        <p>by {this.state.name}</p>
-        </div>
+        <Header  title = {this.state.id}/>
+        <table>
+               <tbody>
+                  {this.state.data.map((animals, i) => 
+                  <TableRow key = {i}  data = {animals} />)}
+               </tbody>
+            </table>
+       </div>
       );
    }
 }
@@ -25,7 +44,7 @@ class Header extends React.Component {
    render(){
       return (
          <div>
-<h1>Header</h1>
+<h1>{this.props.title}</h1>
          </div>
       )
    }
@@ -38,6 +57,16 @@ class Content extends React.Component {
             <p>The content text!!!</p>
          </div>
       )
+   }
+}
+class TableRow extends React.Component {
+   render() {
+      return (
+         <tr>
+            <td>{this.props.data.name}</td>
+            <td>{this.props.data.age}</td>
+         </tr>
+      );
    }
 }
 export default App;
